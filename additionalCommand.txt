@@ -1,0 +1,9 @@
+//Mock generation
+Step 1: GO TO expected directory
+Step 2: Set in the top of class in below:
+//go:generate mockgen -destination=rocket_mocks_test.go -package=rocket github.com/asishcse60/go-grpc-microservices/internal/rocket Store
+Step 3: give command from Terminal
+go generate ./...
+You will see a mock class inserted in directory
+
+//Test: go run rocket_test.go
