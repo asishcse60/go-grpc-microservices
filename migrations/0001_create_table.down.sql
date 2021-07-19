@@ -1,0 +1,2 @@
+--TO DO
+DROP TABLE rockets IF EXISTS;

@@ -7,3 +7,7 @@ go generate ./...
 You will see a mock class inserted in directory
 
 //Test: go run rocket_test.go
+//Postgres run: docker run --name go-grpc-microservices-db -e POSTGRES_PASSWORD=6001 -p 5432:5432 -d postgres
+//Running docker container: docker ps
+//go get github.com/jmoiron/sqlx
+//go get: added github.com/joho/godotenv v1.3.0
