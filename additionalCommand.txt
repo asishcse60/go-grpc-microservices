@@ -1,3 +1,4 @@
+//gRPC Vs REST: https://medium.com/@sankar.p/how-grpc-convinced-me-to-chose-it-over-rest-30408bf42794
 //Mock generation
 Step 1: GO TO expected directory
 Step 2: Set in the top of class in below:
@@ -11,3 +12,4 @@ You will see a mock class inserted in directory
 //Running docker container: docker ps
 //go get github.com/jmoiron/sqlx
 //go get: added github.com/joho/godotenv v1.3.0
+//https://github.com/protocolbuffers/protobuf/releases/

@@ -13,7 +13,7 @@ type Store struct {
 	db *sqlx.DB
 }
 
-func NewDatabase() (Store, error){
+func NewDatabase() (Store, error) {
 	fmt.Println("Setting up new database connection")
 	err := godotenv.Load(".env")
 
@@ -24,23 +24,24 @@ func NewDatabase() (Store, error){
 	dbUsername := os.Getenv("DB_USERNAME")
 	dbPassword := os.Getenv("DB_PASSWORD")
 	dbHost := os.Getenv("DB_HOST")
-	dbTable := os.Getenv("DB_TABLE")
+	dbName := os.Getenv("DB_NAME")
 	dbPort := os.Getenv("DB_PORT")
 	sslMode := os.Getenv("SSL_MODE")
 
-	connectString := fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s sslmode=%s", dbHost, dbPort, dbUsername, dbTable, dbPassword, sslMode)
+	connectString := fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s sslmode=%s", dbHost, dbPort, dbUsername, dbName, dbPassword, sslMode)
 	fmt.Println(dbUsername)
 	fmt.Println(dbPassword)
 	fmt.Println(dbHost)
-	fmt.Println(dbTable)
+	fmt.Println(dbName)
 	fmt.Println(dbPort)
-	db,err := sqlx.Connect("postgres", connectString)
-	if err != nil{
+	db, err := sqlx.Connect("postgres", connectString)
+	if err != nil {
 		fmt.Println(err)
 		return Store{}, err
 	}
 	return Store{db: db}, nil
 }
+
 // GetRocketByID - returns a rocket from the database by a given ID
 func (s Store) GetRocketByID(id string) (rocket.Rocket, error) {
 	return rocket.Rocket{}, nil

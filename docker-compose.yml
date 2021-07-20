@@ -24,7 +24,7 @@ services:
       DB_PASSWORD: "6001"
       DB_DB: "postgres"
       DB_HOST: "db"
-      DB_TABLE: "rockets"
+      DB_NAME: "postgres"
       DB_PORT: "5432"
       SSL_MODE: "disable"
     ports:
