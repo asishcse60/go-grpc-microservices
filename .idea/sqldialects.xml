@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
-    <file url="file://$PROJECT_DIR$/migrations/0001_create_table.down.sql" dialect="HSQLDB" />
-    <file url="file://$PROJECT_DIR$/migrations/0001_create_table.up.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/migrations/0001_create_rockets_table.down.sql" dialect="HSQLDB" />
+    <file url="file://$PROJECT_DIR$/migrations/0001_create_rockets_table.up.sql" dialect="GenericSQL" />
   </component>
 </project>

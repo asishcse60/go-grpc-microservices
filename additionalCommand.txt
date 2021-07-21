@@ -13,3 +13,4 @@ You will see a mock class inserted in directory
 //go get github.com/jmoiron/sqlx
 //go get: added github.com/joho/godotenv v1.3.0
 //https://github.com/protocolbuffers/protobuf/releases/
+//Acceptance Test: go test ./test -tags=acceptance -v

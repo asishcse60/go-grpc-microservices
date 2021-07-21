@@ -5,7 +5,7 @@ import (
 	"github.com/asishcse60/go-grpc-microservices/internal/rocket"
 	"github.com/jmoiron/sqlx"
 	"github.com/joho/godotenv"
-	uuid "github.com/satori/go.uuid"
+	"github.com/satori/go.uuid"
 	"log"
 	"os"
 )
@@ -57,7 +57,7 @@ func (s Store) GetRocketByID(id string) (rocket.Rocket, error) {
 
 // InsertRocket - inserts a new rocket into the database
 func (s Store) InsertRocket(rkt rocket.Rocket) (rocket.Rocket, error) {
-	_,err := s.db.NamedQuery(`INSER INTO rocket (id, name, type) VALUES (:id,:name,:type)`, rkt)
+	_,err := s.db.NamedQuery(`INSERT INTO rockets (id, name, type) VALUES (:id,:name,:type)`, rkt)
 	if err != nil{
 		log.Println(err.Error())
 		return rocket.Rocket{}, err
