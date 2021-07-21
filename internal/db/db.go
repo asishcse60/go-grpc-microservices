@@ -40,6 +40,10 @@ func NewDatabase() (Store, error) {
 		fmt.Println(err)
 		return Store{}, err
 	}
+	//_, err = db.DB.Exec("DROP TABLE IF EXISTS " + "schema_migrations" + ";")
+	//if err != nil{
+	//	fmt.Println(err)
+	//}
 	return Store{db: db}, nil
 }
 

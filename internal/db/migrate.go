@@ -18,6 +18,7 @@ func (s *Store) Migrate() error {
 		return err
 	}
 	dbName := os.Getenv("DB_NAME")
+
 	m, err := migrate.NewWithDatabaseInstance("file://migrations", dbName, driver)
 	if err != nil {
 		fmt.Println(err)

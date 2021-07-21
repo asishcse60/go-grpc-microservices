@@ -3,7 +3,7 @@ version: "3.8"
 services:
   db:
     image: postgres:12.2-alpine
-    container_name: "go-grpc-microservices-db"
+    container_name: "go-grpc-db"
     ports:
       - "5432:5432"
     environment:
@@ -17,7 +17,7 @@ services:
 
   api:
     build: .
-    container_name: "go-grpc-microservices"
+    container_name: "go-grpc-service"
     environment:
       TEST: "test"
       DB_USERNAME: "postgres"

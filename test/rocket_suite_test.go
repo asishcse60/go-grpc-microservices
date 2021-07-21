@@ -7,6 +7,9 @@ import (
 	uuid "github.com/satori/go.uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
+	"log"
 	"testing"
 )
 
@@ -33,7 +36,19 @@ func (s *RocketTestSuite) TestRocket() {
 		//assert.NoError(s.T(), err)
 		assert.Equal(s.T(),u, resp.Rocket.Id)
 	})
-
+	s.T().Run("validates the uuid in the new rocket is a uuid", func(t *testing.T) {
+		_, err := client.AddRocket(context.Background(), &rkt.AddRocketRequest{
+			Rocket: &rkt.Rocket{
+				Id: "not-a-valid-uuid",
+				Name: "V1",
+				Type: "Falcon Heavy",
+			},
+		})
+		log.Println(err)
+		assert.Error(s.T(), err)
+		st := status.Convert(err)
+		assert.Equal(s.T(), codes.InvalidArgument, st.Code())
+	})
 	s.T().Run("get a rocket by id", func(t *testing.T) {
 		resp,err := client.GetRocket(context.Background(),&rkt.GetRocketRequest{
 			Id: u,
