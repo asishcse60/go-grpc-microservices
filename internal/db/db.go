@@ -5,6 +5,7 @@ import (
 	"github.com/asishcse60/go-grpc-microservices/internal/rocket"
 	"github.com/jmoiron/sqlx"
 	"github.com/joho/godotenv"
+	uuid "github.com/satori/go.uuid"
 	"log"
 	"os"
 )
@@ -44,15 +45,36 @@ func NewDatabase() (Store, error) {
 
 // GetRocketByID - returns a rocket from the database by a given ID
 func (s Store) GetRocketByID(id string) (rocket.Rocket, error) {
-	return rocket.Rocket{}, nil
+	var rkt rocket.Rocket
+	row := s.db.QueryRow(`SELECT id FROM rockets where id=$1`, id)
+	err := row.Scan(&rkt.ID)
+	if err != nil{
+		log.Println(err.Error())
+		return rocket.Rocket{}, err
+	}
+	return rkt, nil
 }
 
 // InsertRocket - inserts a new rocket into the database
 func (s Store) InsertRocket(rkt rocket.Rocket) (rocket.Rocket, error) {
-	return rocket.Rocket{}, nil
+	_,err := s.db.NamedQuery(`INSER INTO rocket (id, name, type) VALUES (:id,:name,:type)`, rkt)
+	if err != nil{
+		log.Println(err.Error())
+		return rocket.Rocket{}, err
+	}
+	return rocket.Rocket{ID: rkt.ID, Type: rkt.Type, Name: rkt.Name}, nil
 }
 
 // DeleteRocket - deletes a rocket from the database by it's ID
 func (s Store) DeleteRocket(id string) error {
+	uid,err := uuid.FromString(id)
+	if err!=nil{
+		log.Println(err.Error())
+		return err
+	}
+	_,err = s.db.Exec(`DELETE FROM rockets where id=$1`, uid)
+	if err != nil{
+		return err
+	}
 	return nil
 }
