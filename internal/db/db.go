@@ -5,7 +5,7 @@ import (
 	"github.com/asishcse60/go-grpc-microservices/internal/rocket"
 	"github.com/jmoiron/sqlx"
 	"github.com/joho/godotenv"
-	"github.com/satori/go.uuid"
+	uuid "github.com/satori/go.uuid"
 	"log"
 	"os"
 )

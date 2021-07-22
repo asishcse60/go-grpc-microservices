@@ -28,7 +28,7 @@ func (h Handler) Serve() error{
 		return err
 	}
 	grpcServer := grpc.NewServer()
-    rkt.RegisterRocketServiceServer(grpcServer, &h)
+    rkt.RegisterRocketServiceServer(grpcServer, h)
 	if err := grpcServer.Serve(lis); err!=nil{
 		log.Println(err)
 		return err
@@ -56,11 +56,11 @@ func (h Handler) AddRocket(ctx context.Context, r *rkt.AddRocketRequest) (*rkt.A
 
 	log.Println("Add rocket grpc endpoint hits")
 
-	 if _, err := uuid.Parse(r.Rocket.Id); err != nil{
-	 	errorStatus := status.Error(codes.InvalidArgument, "uuid is not valid")
-	 	log.Print("uuid is not valid")
-	 	return nil, errorStatus
-	 }
+	if _, err := uuid.Parse(r.Rocket.Id); err != nil{
+		errorStatus := status.Error(codes.InvalidArgument, "uuid is not valid")
+		log.Print("uuid is not valid")
+		return nil, errorStatus
+	}
 
 	rckt ,err := h.RocketService.InsertRocket(ctx, rocket.Rocket{
 		ID: r.Rocket.Id,
